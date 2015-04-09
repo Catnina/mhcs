@@ -43,5 +43,7 @@ public class ModuleList {
 		return moduleTable.containsKey(idNum);
 	}
 	
-	
+	public Enumeration<Module> getModules() {
+		return moduleTable.elements();
+	}
 }
