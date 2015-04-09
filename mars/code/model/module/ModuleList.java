@@ -1,3 +1,10 @@
+/*
+ * Programmer: Garrett Blythe
+ * Original Date: 4/9
+ * Amended by:		Date: 
+ *   Garrett Blythe		4/9
+ */
+
 package code.model.module
 
 import Module;
