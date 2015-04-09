@@ -1,6 +1,6 @@
 package code.model.module
 
-public class Module{
+public abstract class Module{
 	private Integer xCoord;
 	private Integer yCoord;
 	private Integer idNumber;
