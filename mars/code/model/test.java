@@ -1,4 +1,4 @@
-package view;
+package code.model;
 
 public class test {
 
