@@ -1,3 +1,10 @@
+/*
+ * Owner: Garrett Blythe
+ * Original Date: 4/9
+ * Amended by:		Date: 
+ *   Garrett Blythe		4/9
+ */
+// It may be that this module belongs in the controller package rather than the model package
 package code.model.module
 
 public class ModuleMaker {

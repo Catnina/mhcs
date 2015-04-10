@@ -1,8 +1,9 @@
 /*
- * Programmer: Garrett Blythe
+ * Owner: Garrett Blythe
  * Original Date: 4/9
  * Amended by:		Date: 
  *   Garrett Blythe		4/9
+ *   Garrett Blythe		4/10
  */
 
 package code.model.module
@@ -52,5 +53,9 @@ public class ModuleList {
 	
 	public Enumeration<Module> getModules() {
 		return moduleTable.elements();
+	}
+	
+	public Enumeration<Module> getListOfModuleIds() {
+		return moduleTable.keys();
 	}
 }
