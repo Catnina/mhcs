@@ -20,6 +20,11 @@ public class ModuleMap {
 		map = new Grid(50, 100);
 	}
 	
+	/**
+	 * Builds the grid representation of the module map.
+	 * @param list List of all the modules
+	 * @return The GWT grid representation of the module map
+	 */
 	public Grid renderMap(ModuleList list) {
 		Enumeration<Module> modlist = list.getModules();
 		Module mod = null;
