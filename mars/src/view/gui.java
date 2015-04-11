@@ -1,13 +1,12 @@
 package view;
 
 /**
- * 
+ * creates the graphical user interface. 
+ * Event Bus handles adding and removing modules. 
  * 
  * @author Janna Madden
  *
  */
-
-import lab5.client.PopupPanelExample.MyPopup;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.dom.client.Style.Unit;
@@ -29,6 +28,7 @@ public class MenuBarExample implements EntryPoint {
 
 	  public void onModuleLoad() {
 		  Panel mainPanel = new Panel();
+		  mainPanel.isVisible(false); //only visible after password is entered
 		  mainPanel.setLayout(new BorderLayout());
 		  
 		  southPanel.setLayout(new GridLayout(1,4));
@@ -46,16 +46,35 @@ public class MenuBarExample implements EntryPoint {
 		  southPanel.add(getConfigurations); 
 
 		  Panel northPanel = new Panel();
+		  northPanel.setLayout(new GridLayout(1,2));
 		  Label possible = new Label("configurations not possible.");
 		  //listener: when full configuration reached changed text
 		  northPanel.add(possible);
+		  button logout = new button("logout");
 		  
 		  mainPanel.add(southPanel, BoarderLayout.south);
-		    
+		  
+		  
+		  
+		  Panel login = new Panel();
+		  login.setLayout(GridLayout(4,1));
+		  login.add(new label("enter username and password:"));
+		  JTextField username = new JTextField("username");
+		  JPasswordField password = new JPasswordField();
+		  login.add(username);
+		  login.add(password);
+		  button loginbutton = button("log In");
+		  //button listener if username = Catania and password = 1234, hide login panel, unhide mainpanel
+		  //otherwise clear fields.
+		  login.add(loginbutton);
+		  
 		    }
 	}
 	
 	
+
+
+
 	
 	  private static class addModuleMethod extends PopupPanel {
 	  public addModuleMethod() {
@@ -109,9 +128,8 @@ public class MenuBarExample implements EntryPoint {
 	  //event listenen (event buss)
 		  addModuleMethod.isVisible(false); //makes the popup window close automatically after
 		  //adding module (prevent adding same module multiple times b/cuz human error etc.)
-};
+	  };
 	  
 	  panel1.add(addButton);
-	  
 	  setWidget(panel1));
 	  }
