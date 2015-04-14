@@ -13,8 +13,9 @@ import com.google.gwt.user.client.ui.Image;
 public class ModuleImage extends Image {
 	Module mod;
 	
-	ModuleImage(String path) {
+	ModuleImage(String path, Module newMod) {
 		super.setUrl(path);
+		mod = newMod;
 	}
 	
 	/**
