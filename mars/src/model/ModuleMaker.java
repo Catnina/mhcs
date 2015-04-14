@@ -5,20 +5,20 @@
  *   Garrett Blythe		4/9
  */
 // It may be that this module belongs in the controller package rather than the model package
-package code.model.module
+package model;
 
 public class ModuleMaker {
 	private ModuleList list;
 	
 	//Constructor
-	public ModuleHandler(ModuleList givenList)
+	public ModuleMaker(ModuleList givenList)
 	{
 		list = givenList;
 	}
 	
 	//General Methods
 	public boolean createModule(Integer idNumber, Integer xCoordinate, Integer yCoordinate, Integer turnsToUpright, String condition) {
-		int id = idNumber.intValue;
+		int id = idNumber.intValue();
 		boolean result = true;
 		Module newModule = null;
 		if(id >= 1 && id <= 40) {

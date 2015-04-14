@@ -6,16 +6,17 @@
  *   Garrett Blythe		4/10
  */
 
-package code.model.module
+package model;
 
-import Module;
+import java.util.Enumeration;
+import java.util.Hashtable;
 
 public class ModuleList {
 	private Hashtable<Integer, Module> moduleTable;
 	
 	//Constructor
 	public ModuleList() {
-		moduleTable = new Hashtable<Integer, Module>;
+		moduleTable = new Hashtable<Integer, Module>();
 	}
 	
 	//Add and Remove
@@ -29,7 +30,7 @@ public class ModuleList {
 		}
 		else
 		{
-			moduleTable.put(idNum, newModule)
+			moduleTable.put(idNum, newModule);
 			success = true;
 		}
 		
@@ -55,7 +56,7 @@ public class ModuleList {
 		return moduleTable.elements();
 	}
 	
-	public Enumeration<Module> getListOfModuleIds() {
+	public Enumeration<Integer> getListOfModuleIds() {
 		return moduleTable.keys();
 	}
 }

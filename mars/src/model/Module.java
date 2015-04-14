@@ -5,7 +5,7 @@
  *   Garrett Blythe		4/9
  */
 
-package code.model.module
+package model;
 
 public abstract class Module{
 	private Integer xCoord;
@@ -20,7 +20,7 @@ public abstract class Module{
 		yCoord = y;
 		idNumber = id;
 		orientation = turns;
-		Condition = Cond;
+		condition = Cond;
 	}
 	
 	//toString
@@ -31,6 +31,8 @@ public abstract class Module{
 		output += " ID:" + idNumber;
 		output += " TURNS:" + orientation;
 		output += " CONDITION:" + condition;
+		
+		return output;
 	}
 	
 	// Getters and Setters

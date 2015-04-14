@@ -5,7 +5,7 @@
  *   Garrett Blythe		4/9
  */
 
-package code.model.module
+package model;
 
 public class PlainModule extends Module{
 	private Integer neighborNorthId;
@@ -43,7 +43,8 @@ public class PlainModule extends Module{
 	
 	//toString
 	public String toString() {
-		output = super.toString;
+		String output;
+		output = super.toString();
 		output += " NORTH:" + neighborNorthId;
 		output += " EAST:" + neighborEastId;
 		output += " SOUTH:" + neighborSouthId;

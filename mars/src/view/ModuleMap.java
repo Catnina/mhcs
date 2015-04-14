@@ -1,6 +1,10 @@
 package view;
 
 import java.util.Enumeration;
+
+import model.Module;
+import model.ModuleList;
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Grid;
@@ -67,11 +71,12 @@ public class ModuleMap {
 			}
 			
 			imgPath += ".jpg";
-			Image img = new Image(imgPath);
+			ModuleImage img = new ModuleImage(imgPath);
 			img.setPixelSize(10, 10);
+			img.setModule(mod);
     	    img.addClickHandler(new ClickHandler() {
     	    	  public void onClick(ClickEvent event) {
-    	    		  Image temp = (Image)event.getSource();
+    	    		  ModuleImage temp = (ModuleImage)event.getSource();
     	    		  //TO-DO: Add pop up window that displays module details.
     	    		  //
     	    		  //
