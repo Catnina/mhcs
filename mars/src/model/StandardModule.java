@@ -5,18 +5,18 @@
  *   Garrett Blythe		4/9
  */
 
-package code.model.module
+package model;
 
 public class StandardModule extends Module{
 	private Integer neighborId;
 	private Module neighbor;
 	
 	//Constructors
-	public Module(int x, int y, int id, int turns, String cond) {
+	public StandardModule(int x, int y, int id, int turns, String cond) {
 		super(x, y, id, turns, cond);
 	}
 	
-	public Module(int x, int y, int id, int turns, String cond, Module nextTo) {
+	public StandardModule(int x, int y, int id, int turns, String cond, Module nextTo) {
 		super(x, y, id, turns, cond);
 		neighbor = nextTo;
 		neighborId = nextTo.getIdNumber();
@@ -24,7 +24,8 @@ public class StandardModule extends Module{
 	
 	//toString
 	public String toString() {
-		output = super.toString;
+		String output;
+		output = super.toString();
 		output += " NEXT_TO:" + neighborId;
 		return output;
 	}
