@@ -7,135 +7,108 @@ package view;
  * @author Janna Madden
  *
  */
-import java.awt.BorderLayout;
-import javax.swing.JFrame;
-import javax.swing.JTextArea;
-import javax.swing.JPanel;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import javax.swing.JLabel;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.JPopupMenu;
-import java.awt.Component;
-import javax.swing.JFormattedTextField;
-import javax.swing.JSpinner;
-import java.awt.Panel;
-import java.awt.FlowLayout;
-import java.awt.CardLayout;
-import java.awt.GridBagConstraints;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
+import com.google.gwt.core.client.EntryPoint;
+import view.ModuleMap;
+import model.ModuleList;
+import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.DockLayoutPanel;
+import com.google.gwt.user.client.ui.Grid;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
+import com.google.gwt.user.client.ui.Panel;
+import com.google.gwt.user.client.ui.PopupPanel;
+import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.SuggestBox;
+import com.google.gwt.user.client.ui.TextBox;
+
 
 public class MhcsView{
-	   public static void main(String[] args) {
-	      	      
-	      JPanel panel = new JPanel();
-	      JPanel panel1 = new JPanel();
+	   public void onModuleLoad() {	      
+	      DockLayoutPanel panel = new DockLayoutPanel(Unit.EM);
+	      Grid panel1 = new Grid(4,3);
 	      
-	      JPopupMenu addModulePopUp = new JPopupMenu();
-	      addModulePopUp.add(panel1);
-	      JSpinner conditionSpinner = new JSpinner();
-	      
-	      JButton btnNewButton_1 = new JButton("Add Module");
-	      panel1.setLayout(new GridLayout(0, 3, 0, 0));
-	      
-	      JLabel configNumber = new JLabel("Configuration Number");
+	      //this section of code makes the elements for within the addModule popup window
+	      MultiWordSuggestOracle conditionOracle = new MultiWordSuggestOracle();
+	      conditionOracle.add("Usable");
+	      conditionOracle.add("Usable After Repair");
+	      conditionOracle.add("Unusable");
+		  MultiWordSuggestOracle orientationOracle = new MultiWordSuggestOracle();
+		  orientationOracle.add("None");
+		  orientationOracle.add("One Rotation");
+		  orientationOracle.add("Two Rotations");
+		  orientationOracle.add("Three Rotations");
+	      PopupPanel addModulePopUp = new PopupPanel();
+	      Label configNumber = new Label("Configuration Number");
 	      panel1.add(configNumber);
-	      JSpinner configNumberSpiner = new JSpinner();
-	      panel1.add(configNumberSpiner);
-	      
-	      JLabel lblNewLabel = new JLabel("New label");
-	      panel1.add(lblNewLabel);
-	      
-	      JLabel coordinates = new JLabel("Coordinates");
+	      TextBox configNumberInput = new TextBox();   
+	      panel1.add(configNumberInput);
+	      Label coordinates = new Label("Coordinates");
 	      panel1.add(coordinates);
-	      JSpinner xCoordinate = new JSpinner();
-	      panel1.add(xCoordinate);
-	      JSpinner yCoordinate = new JSpinner();
-	      panel1.add(yCoordinate);
+	      TextBox xCoordinate = new TextBox();
+	      panel.add(xCoordinate);
+	      TextBox yCoordinate = new TextBox();	  
+	      panel.add(yCoordinate);
+	      Label condition = new Label("Condition");
+	      panel.add(condition);
+	      SuggestBox conditionSuggest = new SuggestBox(conditionOracle);
+	      panel.add(conditionSuggest);
+	      Label orientation = new Label("Orientation");
+	      panel.add(orientation);
+	      SuggestBox orientationSuggest = new SuggestBox(orientationOracle);
+	      panel.add(orientationSuggest);
+	      Button addModuleButton = new Button("Add Module", new ClickHandler() {
+	          public void onClick(ClickEvent event) {
+		            //Window.alert("How high?");
+		          }
+		        });
+	      panel.add(addModuleButton);
+	      addModulePopUp.add(panel1);
+
+
 	      
-	      JLabel Condition = new JLabel("Condition");
-	      panel1.add(Condition);
-	      panel1.add(conditionSpinner);
+	      //JPopupMenu removeModulePopUp = new JPopupMenu();
+	      //JPopupMenu configurationAlert = new JPopupMenu();
+	      //JPopupMenu tenDayAlert = new JPopupMenu();
 	      
-	      JLabel lblNewLabel_1 = new JLabel("New label");
-	      panel1.add(lblNewLabel_1);
+	     // Panel panel_1 = new Panel();
+	     // panel.add(panel_1, BorderLayout.SOUTH);
+	     // panel_1.setLayout(new GridLayout(1, 0, 0, 0));
 	      
-	      JLabel orientation = new JLabel("Orientation");
-	      panel1.add(orientation);
-	      JSpinner orientationSpinner = new JSpinner();
-	      panel1.add(orientationSpinner);
-	      panel1.add(btnNewButton_1);
+	      //map in center area
+	      panel.add(ModuleMap.renderMap(ModuleList.getModules()));
 	      
-	      addPopup(panel, addModulePopUp);
-	      JPopupMenu removeModulePopUp = new JPopupMenu();
-	      addPopup(panel, removeModulePopUp);
-	      JPopupMenu configurationAlert = new JPopupMenu();
-	      addPopup(panel, configurationAlert);
-	      JPopupMenu tenDayAlert = new JPopupMenu();
-	      addPopup(panel, tenDayAlert);
-	      panel.setLayout(new BorderLayout(0, 0));
+
+	      //buttons in south area
+	      Button addModule = new Button("Add Module", new ClickHandler() {
+	          public void onClick(ClickEvent event) {
+	            //disable add, remove and get configuration buttons  
+	          }
+	        });
+	      panel.addSouth(addModule, 0);
+	      Button removeModule = new Button("Edit/Remove Module", new ClickHandler() {
+	          public void onClick(ClickEvent event) {
+	            Window.alert("How high?");
+	          }
+	        });
+	      panel.addSouth(removeModule, 0);
+	      Button getConfigs = new Button("Get Configurations", new ClickHandler() {
+	          public void onClick(ClickEvent event) {
+	            Window.alert("How high?");
+	          }
+	        });
+	      panel.addSouth(getConfigs, 0);
 	      
-	      JPanel panel_1 = new JPanel();
-	      panel.add(panel_1, BorderLayout.SOUTH);
-	      panel_1.setLayout(new GridLayout(1, 0, 0, 0));
 	      
-	      JButton addModule = new JButton("Add Module");
-	      addModule.addMouseListener(new MouseAdapter() {
-	      	@Override
-	      	public void mouseClicked(MouseEvent e) {
-	      		addModulePopUp.show(panel, 0, 0);
-	      	}
-	      });
-	      panel_1.add(addModule);
+	      //configurations possible in north segment
+	      Label configPoss = new Label("minimum configuration NOT possible");
+	      panel.addNorth(configPoss, 0);
 	      
-	      JButton removeModule = new JButton("Edit/Remove Module");
-	      removeModule.addMouseListener(new MouseAdapter() {
-	      	@Override
-	      	public void mouseClicked(MouseEvent e) {
-	      		//open add module window
-	      	}
-	      });
-	      panel_1.add(removeModule);
-	      
-	      JButton getConfigs = new JButton("Get Configurations");
-	      getConfigs.addMouseListener(new MouseAdapter() {
-	      	@Override
-	      	public void mouseClicked(MouseEvent e) {
-	      		//open get configurations page
-	      	}
-	      });
-	      panel_1.add(getConfigs);
-	      
-	      JLabel configPoss = new JLabel("minimum configuration NOT possible");
-	      panel.add(configPoss, BorderLayout.NORTH);
+	      //10 day alert in north panel
 	      
     }
-	private static void addPopup(Component component, final JPopupMenu popup) {
-		component.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-			public void mouseReleased(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-			private void showMenu(MouseEvent e) {
-				popup.show(e.getComponent(), e.getX(), e.getY());
-			}
-		});
-	}
 }
 
