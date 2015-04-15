@@ -13,6 +13,7 @@ public abstract class Module{
 	private Integer idNumber;
 	private Integer orientation;
 	private String condition;
+	private String type;
 	
 	//Constructors
 	public Module(int x, int y, int id, int turns, String Cond) {
@@ -67,4 +68,6 @@ public abstract class Module{
 	public void setCondition(String newCondition) {
 		condition = newCondition;
 	}
+	
+	abstract public String getType();
 }
